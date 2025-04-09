@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.hero img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+}
+
+.btn-pink {
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+}
+
+.btn-pink:hover {
+    background-color: #e04361;
+    color: white;
+}
+
+.text-pink {
+    color: #ff4d6d;
+}
+
+.product h3 {
+    font-size: 16px;
+    margin-top: 10px;
+}
