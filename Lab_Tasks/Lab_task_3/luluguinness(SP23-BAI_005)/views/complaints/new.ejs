@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Submit a Complaint</h2>
+                </div>
+                <div class="card-body">
+                    <form action="/user/complaints" method="POST">
+                        <div class="mb-3">
+                            <label for="orderId" class="form-label">Select Order:</label>
+                            <select name="orderId" id="orderId" class="form-select" required>
+                                <option value="">Choose an order...</option>
+                                <% orders.forEach(function(order) { %>
+                                    <option value="<%= order._id %>">Order #<%= order._id.toString().slice(-6) %> - £<%= order.totalAmount.toFixed(2) %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Complaint Message:</label>
+                            <textarea name="message" id="message" class="form-control" rows="5" placeholder="Please describe your issue..." required></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Submit Complaint</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">My Complaints</h2>
+                </div>
+                <div class="card-body">
+                    <% if (complaints && complaints.length > 0) { %>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Message</th>
+                                        <th>Submitted At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% complaints.forEach(function(complaint) { %>
+                                        <tr>
+                                            <td><%= complaint.orderId ? complaint.orderId._id.toString().slice(-6) : 'N/A' %></td>
+                                            <td><%= complaint.message %></td>
+                                            <td><%= complaint.timestamp.toLocaleString() %></td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } else { %>
+                        <div class="text-center py-4">
+                            <i class="fas fa-comment-slash fa-3x text-muted mb-3"></i>
+                            <h4>No Complaints Yet</h4>
+                            <p class="text-muted">You haven't submitted any complaints yet.</p>
+                            <a href="/user/complaints/new" class="btn btn-primary">Submit a Complaint</a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

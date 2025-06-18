@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-2px);
+        }
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Manage Products</h2>
+            <div>
+                <a href="/admin/products/add" class="btn btn-dark me-2">
+                    <i class="fas fa-plus"></i> Add New Product
+                </a>
+                <a href="/admin" class="btn btn-outline-dark">Back to Dashboard</a>
+            </div>
+        </div>
+
+        <% if (success) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <% } %>
+
+        <% if (error) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <% } %>
+
+        <% if (!products || products.length === 0) { %>
+            <div class="text-center py-5">
+                <p class="lead">No products found.</p>
+                <a href="/admin/products/add" class="btn btn-dark">Add Your First Product</a>
+            </div>
+        <% } else { %>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(product => { %>
+                            <tr>
+                                <td>
+                                    <img src="/media/images/<%= product.image.replace(/\.[^/.]+$/, '.jpg') %>" 
+                                         alt="<%= product.title %>" 
+                                         class="product-image">
+                                </td>
+                                <td><%= product.title %></td>
+                                <td><%= product.category %></td>
+                                <td>£<%= product.price.toFixed(2) %></td>
+                                <td><%= product.stock %></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="/admin/products/edit/<%= product._id %>" 
+                                           class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <form action="/admin/products/delete/<%= product._id %>" 
+                                              method="POST" 
+                                              class="d-inline" 
+                                              onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

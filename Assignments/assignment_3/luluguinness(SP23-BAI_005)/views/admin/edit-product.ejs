@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product - Lulu Guinness</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .text-pink {
+            color: #ff69b4;
+        }
+        .btn-pink {
+            background-color: #ff69b4;
+            color: white;
+        }
+        .btn-pink:hover {
+            background-color: #ff1493;
+            color: white;
+        }
+        .navbar {
+            background-color: #1a1a1a;
+        }
+        .navbar-brand {
+            color: white !important;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+        }
+        .nav-link:hover {
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/admin">Lulu Guinness Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/products/add">
+                            <i class="fas fa-plus"></i> Add Product
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <h1 class="h4 mb-0">Edit Product</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="/admin/products/edit/<%= product._id %>" method="POST">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Product Title</label>
+                                <input type="text" class="form-control" id="title" name="title" value="<%= product.title %>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="3" required><%= product.description %></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price (£)</label>
+                                <input type="number" class="form-control" id="price" name="price" step="0.01" min="0" value="<%= product.price %>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image URL</label>
+                                <input type="text" class="form-control" id="image" name="image" 
+                                       value="<%= product.image.replace(/\.[^/.]+$/, '.jpg') %>" 
+                                       required 
+                                       pattern="[^/]+\.jpg$" 
+                                       title="Please enter a valid image name with .jpg extension (e.g., product1.jpg)">
+                                <small class="text-muted">Enter image name with .jpg extension (e.g., product1.jpg)</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-select" id="category" name="category" required>
+                                    <option value="">Select a category</option>
+                                    <option value="Bags" <%= product.category === 'Bags' ? 'selected' : '' %>>Bags</option>
+                                    <option value="Accessories" <%= product.category === 'Accessories' ? 'selected' : '' %>>Accessories</option>
+                                    <option value="Jewelry" <%= product.category === 'Jewelry' ? 'selected' : '' %>>Jewelry</option>
+                                    <option value="Scarves" <%= product.category === 'Scarves' ? 'selected' : '' %>>Scarves</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="stock" class="form-label">Stock</label>
+                                <input type="number" class="form-control" id="stock" name="stock" min="0" value="<%= product.stock %>" required>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a href="/admin" class="btn btn-outline-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-pink">Update Product</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

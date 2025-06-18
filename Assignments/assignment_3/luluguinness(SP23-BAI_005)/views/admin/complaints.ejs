@@ -1,0 +1,36 @@
+<div class="col-md-9 col-sm-8 admin-content p-4">
+    <div class="admin-card p-4">
+        <h2 class="mb-4">All User Complaints</h2>
+        
+        <% if (complaints && complaints.length > 0) { %>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Order ID</th>
+                            <th>Message</th>
+                            <th>Submitted At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% complaints.forEach(function(complaint) { %>
+                            <tr>
+                                <td><%= complaint.userId ? (complaint.userId.email || complaint.userId._id.toString().slice(-6)) : 'N/A' %></td>
+                                <td><%= complaint.orderId ? complaint.orderId._id.toString().slice(-6) : 'N/A' %></td>
+                                <td><%= complaint.message %></td>
+                                <td><%= complaint.timestamp.toLocaleString() %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <div class="text-center py-4">
+                <i class="fas fa-comment-slash fa-3x text-muted mb-3"></i>
+                <h4>No Complaints Yet</h4>
+                <p class="text-muted">No complaints have been submitted by users.</p>
+            </div>
+        <% } %>
+    </div>
+</div> 

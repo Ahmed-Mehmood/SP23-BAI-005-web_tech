@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title : 'Lulu Guinness' %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .text-pink {
+            color: #ff69b4;
+        }
+        .btn-pink {
+            background-color: #ff69b4;
+            color: white;
+        }
+        .btn-pink:hover {
+            background-color: #ff1493;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black px-4">
+    <a class="navbar-brand fw-bold" href="/">LULU GUINNESS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Bags</a>
+                <ul class="dropdown-menu bg-black">
+                    <li><a class="dropdown-item text-white" href="#">Handbags</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Shoulder Bags</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Clutches</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Crossbody Bags</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Travel</a>
+                <ul class="dropdown-menu bg-black">
+                    <li><a class="dropdown-item text-white" href="#">Luggage</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Backpacks</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Travel Accessories</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Accessories</a>
+                <ul class="dropdown-menu bg-black">
+                    <li><a class="dropdown-item text-white" href="#">Scarves</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Jewelry</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Keychains</a></li>
+                </ul>
+            </li>
+            <% if (typeof user !== 'undefined' && user) { %>
+                <% if (user.role !== 'admin') { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/my-orders">My Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/complaints/new">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/complaints">My Complaints</a>
+                    </li>
+                <% } %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">Logout</a>
+                </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/login">Login</a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+</nav>
+
+   <%- body %>
+
+
+<footer class="bg-black text-white pt-5 pb-3 text-center">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3 text-start">
+                <h5>Customer Care</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">FAQs</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Shipping & Returns</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Track Your Order</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 text-start">
+                <h5>About Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white text-decoration-none">Our Story</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Sustainability</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Careers</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 text-start">
+                <h5>Follow Us</h5>
+                <div class="d-flex gap-2">
+                    <a href="#"><img src="\media\icons\faceboook.png" width="24" height="24" alt=""></a>
+                    <a href="#"><img src="\media\icons\insta.jpg" width="24" height="24" alt=""></a>
+                    <a href="#"><img src="\media\icons\twitter.png" width="24" height="24" alt=""></a>
+                    <a href="#"><img src="\media\icons\tiktok.png" width="24" height="24" alt=""></a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5>Subscribe for Updates</h5>
+                <input type="email" class="form-control mb-2" placeholder="Enter your email">
+                <button class="btn btn-pink w-100">Sign Up</button>
+            </div>
+        </div>
+    </div>
+    <p class="mt-4 mb-0">&copy; 2025 Lulu Guinness. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

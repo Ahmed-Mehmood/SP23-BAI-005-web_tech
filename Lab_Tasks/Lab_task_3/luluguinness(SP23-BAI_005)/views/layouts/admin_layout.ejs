@@ -1,0 +1,71 @@
+<style>
+
+.admin-sidebar {
+  background-color: #212529;
+  min-height: 100vh;
+  border-right: 1px solid #333;
+}
+
+.admin-sidebar .nav-link {
+  color: #ddd;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease;
+}
+
+.admin-sidebar .nav-link:hover {
+  background-color: #343a40;
+  color: #ffc107;
+}
+
+.admin-content {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.admin-card {
+  background: white;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.admin-dashboard h2 {
+  color: #343a40;
+}
+
+.btn-outline-light {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+.btn-outline-light:hover {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+</style>
+
+<div class="admin-dashboard container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-3 col-sm-4 admin-sidebar d-flex flex-column p-4">
+      <h4 class="text-white mb-4 text-center">Admin Dashboard</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a class="nav-link" href="/admin/products">Manage Products</a></li>
+        <li class="nav-item mb-2"><a class="nav-link" href="/admin/add-product">Add New Product</a></li>
+        <li class="nav-item mb-2"><a class="nav-link" href="/admin/orders">Orders</a></li>
+        <li class="nav-item mb-2"><a class="nav-link" href="/admin/users">Users</a></li>
+        <li class="nav-item mb-2"><a class="nav-link" href="/admin/complaints">Complaints</a></li>
+        <li class="nav-item mt-4"><a class="btn btn-outline-light" href="/user/logout">Logout</a></li>
+      </ul>
+    </nav>
+
+    <%- body %>
+
+      </div>
+</div>
